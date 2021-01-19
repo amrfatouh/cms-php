@@ -1,7 +1,13 @@
 <?php include('./includes/db.php'); ?>
+<?php include('./admin/includes/functions.php'); ?>
 <?php include('./includes/head.php'); ?>
 <?php include('./includes/navigation.php'); ?>
 
+<?php
+if (isset($_GET['cat_id'])) {
+  $cat_id = $_GET['cat_id'];
+}
+?>
 
 <!-- Page Content -->
 <div class="container">
@@ -20,7 +26,7 @@
       <?php
       if (isset($_POST['search_term'])) {
         $search_term = $_POST['search_term'];
-        $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search_term%'";
+        $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search_term%' AND post_category_id = $cat_id";
         $searchQuery = mysqli_query($connection, $query);
         if (mysqli_num_rows($searchQuery) > 0) {
           while ($row = mysqli_fetch_assoc($searchQuery)) {
@@ -48,10 +54,11 @@
           echo '<h1>No Results</h1>';
         }
       } else {
-        //showing all posts in database if no search terms were submitted
-        $query = 'SELECT * FROM posts';
-        $readAllPostsQuery = mysqli_query($connection, $query);
-        while ($row = mysqli_fetch_assoc($readAllPostsQuery)) {
+
+        $query = "SELECT * FROM posts WHERE post_category_id = $cat_id";
+        $selectPostsQuery = mysqli_query($connection, $query);
+        checkQuery($selectPostsQuery);
+        while ($row = mysqli_fetch_assoc($selectPostsQuery)) {
           $post_id = $row['post_id'];
           $post_title = $row['post_title'];
           $post_author = $row['post_author'];

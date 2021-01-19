@@ -1,4 +1,13 @@
 <?php
+//checking query
+function checkQuery($sentQuery)
+{
+  global $connection;
+  if (!$sentQuery) {
+    die("Query Failed! " . mysqli_error($connection));
+  }
+}
+
 //create category query sending
 function createCategory()
 {
