@@ -14,6 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <li><a href="admin/index.php">Admin Panel</a></li>
         <?php
         $query = "SELECT * FROM categories";
         $allCategoriesQuery = mysqli_query($connection, $query);
@@ -22,15 +23,6 @@
           echo "<li><a href='#'>$cat_title</a></li>";
         }
         ?>
-        <!-- <li>
-          <a href="#">{$row}</a>
-        </li>
-        <li>
-          <a href="#">Services</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
-        </li> -->
       </ul>
     </div>
     <!-- /.navbar-collapse -->
