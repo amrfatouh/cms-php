@@ -1,4 +1,5 @@
 <?php include('./includes/db.php'); ?>
+<?php include('./admin/includes/functions.php'); ?>
 <?php include('./includes/head.php'); ?>
 <?php include('./includes/navigation.php'); ?>
 
@@ -20,7 +21,7 @@
       <?php
       if (isset($_POST['search_term'])) {
         $search_term = $_POST['search_term'];
-        $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search_term%'";
+        $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search_term%' AND post_status = 'published'";
         $searchQuery = mysqli_query($connection, $query);
         if (mysqli_num_rows($searchQuery) > 0) {
           while ($row = mysqli_fetch_assoc($searchQuery)) {
@@ -49,8 +50,12 @@
         }
       } else {
         //showing all posts in database if no search terms were submitted
-        $query = 'SELECT * FROM posts';
+        $query = "SELECT * FROM posts WHERE post_status = 'published'";
         $readAllPostsQuery = mysqli_query($connection, $query);
+        checkQuery($readAllPostsQuery);
+        if (mysqli_num_rows($readAllPostsQuery) === 0) {
+          echo "<h2>No Results</h2>";
+        }
         while ($row = mysqli_fetch_assoc($readAllPostsQuery)) {
           $post_id = $row['post_id'];
           $post_title = $row['post_title'];

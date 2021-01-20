@@ -16,13 +16,12 @@ if (isset($_POST['publish_post'])) {
   $post_image_temp_location = $_FILES['post_image']['tmp_name'];
   $post_content = $_POST['post_content'];
   $post_tags = $_POST['post_tags'];
-  $post_comments_count = $_POST['post_comments_count'];
   $post_status = $_POST['post_status'];
 
   move_uploaded_file($post_image_temp_location, '../images/' . $post_image);
 
-  $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comments_count, post_status) ";
-  $query .= "VALUES ($post_category_id, '$post_title', '$post_author', now(), '$post_image', '$post_content', '$post_tags', $post_comments_count, '$post_status')";
+  $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) ";
+  $query .= "VALUES ($post_category_id, '$post_title', '$post_author', now(), '$post_image', '$post_content', '$post_tags', '$post_status')";
   $insertPostQuery = mysqli_query($connection, $query);
   checkQuery($insertPostQuery);
 }
@@ -39,7 +38,6 @@ if (isset($_POST['update_post'])) {
   $post_image_temp_location = $_FILES['post_image']['tmp_name'];
   $post_content = $_POST['post_content'];
   $post_tags = $_POST['post_tags'];
-  $post_comments_count = $_POST['post_comments_count'];
   $post_status = $_POST['post_status'];
 
   $query = "UPDATE posts SET ";
@@ -48,7 +46,6 @@ if (isset($_POST['update_post'])) {
   $query .= "post_author = '$post_author', ";
   $query .= "post_content = '$post_content', ";
   $query .= "post_tags = '$post_tags', ";
-  $query .= "post_comments_count = '$post_comments_count', ";
   $query .= "post_date = now(), ";
   $query .= "post_status = '$post_status'";
 

@@ -12,7 +12,6 @@ if (isset($_GET['edit'])) {
   $post_image = $row['post_image'];
   $post_content = $row['post_content'];
   $post_tags = $row['post_tags'];
-  $post_comments_count = $row['post_comments_count'];
   $post_status = $row['post_status'];
 }
 ?>
@@ -58,10 +57,6 @@ if (isset($_GET['edit'])) {
   <div class="form-group">
     <label for="post_tags">Post Tags</label>
     <input value="<?php echo $post_tags ?>" class="form-control" type="text" name="post_tags" id="post_tags">
-  </div>
-  <div class="form-group">
-    <label for="post_comments_count">Post Comments Count</label>
-    <input value="<?php echo $post_comments_count ?>" class="form-control" type="text" name="post_comments_count" id="post_comments_count">
   </div>
   <div class="form-group">
     <label for="post_status">Post Status</label>

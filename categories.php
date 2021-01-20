@@ -26,7 +26,7 @@ if (isset($_GET['cat_id'])) {
       <?php
       if (isset($_POST['search_term'])) {
         $search_term = $_POST['search_term'];
-        $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search_term%' AND post_category_id = $cat_id";
+        $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search_term%' AND post_category_id = $cat_id AND post_status = 'published'";
         $searchQuery = mysqli_query($connection, $query);
         if (mysqli_num_rows($searchQuery) > 0) {
           while ($row = mysqli_fetch_assoc($searchQuery)) {
@@ -55,9 +55,12 @@ if (isset($_GET['cat_id'])) {
         }
       } else {
 
-        $query = "SELECT * FROM posts WHERE post_category_id = $cat_id";
+        $query = "SELECT * FROM posts WHERE post_category_id = $cat_id  AND post_status = 'published'";
         $selectPostsQuery = mysqli_query($connection, $query);
         checkQuery($selectPostsQuery);
+        if (mysqli_num_rows($selectPostsQuery) === 0) {
+          echo "<h2>No Results</h2>";
+        }
         while ($row = mysqli_fetch_assoc($selectPostsQuery)) {
           $post_id = $row['post_id'];
           $post_title = $row['post_title'];
