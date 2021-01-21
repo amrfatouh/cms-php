@@ -12,6 +12,7 @@ if (isset($_GET['delete'])) {
   $query = "DELETE FROM users WHERE user_id = '$user_id'";
   $deleteUserQuery = mysqli_query($connection, $query);
   checkQuery($deleteUserQuery);
+  $deleteUserSuccess = true;
 }
 ?>
 
@@ -29,6 +30,7 @@ if (isset($_POST['add_user'])) {
   $query .= "VALUES ('$user_name', '$user_password', '$user_firstname', '$user_lastname', '$user_email', '$user_role')";
   $insertUserQuery = mysqli_query($connection, $query);
   checkQuery($insertUserQuery);
+  $createUserSuccess = true;
 }
 ?>
 
@@ -54,6 +56,7 @@ if (isset($_POST['edit_user'])) {
 
   $updateUserQuery = mysqli_query($connection, $query);
   checkQuery($updateUserQuery);
+  $updateUserSuccess = true;
 }
 ?>
 
@@ -73,6 +76,11 @@ if (isset($_POST['edit_user'])) {
 
       <div class="row">
         <div class="col-xs-12">
+          <?php
+          if (isset($_POST['add_user']) && $createUserSuccess) echo "<div class='text-success'>User Created</div>";
+          else if (isset($_POST['edit_user']) && $updateUserSuccess) echo "<div class='text-success'>User Updated</div>";
+          else if (isset($_GET['delete']) && $deleteUserSuccess) echo "<div class='text-success'>User Deleted</div>";
+          ?>
           <table class="table table-bordered table-hover">
             <tr>
               <th>Id</th>
