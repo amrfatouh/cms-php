@@ -52,6 +52,21 @@
     <!-- /.row -->
   </div>
 
+  <div class="well">
+    <h4>Login</h4>
+    <form action="login.php" method="post">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input class="form-control" type="text" name="username" id="user_name">
+      </div>
+      <div class="form-group">
+        <label for="username">Password</label>
+        <input class="form-control" type="password" name="password" id="password">
+      </div>
+      <input type="submit" value="Login" class="btn btn-primary" name="login">
+    </form>
+  </div>
+
   <!-- Side Widget Well -->
   <div class="well">
     <h4>Side Widget Well</h4>
