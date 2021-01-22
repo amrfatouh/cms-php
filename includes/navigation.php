@@ -24,6 +24,7 @@
           echo "<li><a href='categories.php?cat_id=$cat_id'>$cat_title</a></li>";
         }
         ?>
+        <li><a href="registration.php">Register</a></li>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

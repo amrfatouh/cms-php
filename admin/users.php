@@ -26,6 +26,9 @@ if (isset($_POST['add_user'])) {
   $user_email = $_POST['user_email'];
   $user_role = $_POST['user_role'];
 
+  $salt = '$2y$10$0123456789012345678901';
+  $user_password = crypt($user_password, $salt);
+
   $query = "INSERT INTO users(user_name, user_password, user_firstname, user_lastname, user_email, user_role) ";
   $query .= "VALUES ('$user_name', '$user_password', '$user_firstname', '$user_lastname', '$user_email', '$user_role')";
   $insertUserQuery = mysqli_query($connection, $query);
@@ -44,6 +47,9 @@ if (isset($_POST['edit_user'])) {
   $user_lastname = $_POST['user_lastname'];
   $user_email = $_POST['user_email'];
   $user_role = $_POST['user_role'];
+
+  $salt = '$2y$10$0123456789012345678901';
+  $user_password = crypt($user_password, $salt);
 
   $query = "UPDATE users SET ";
   $query .= "user_name = '$user_name', ";
@@ -112,7 +118,7 @@ if (isset($_POST['edit_user'])) {
                 <td><?php echo $user_email ?></td>
                 <td><?php echo $user_image ?></td>
                 <td><?php echo $user_role ?></td>
-                <td><a href="users.php?delete=<?php echo $user_id ?>">Delete</a></td>
+                <td><a onclick="return confirm('Are you sure?')" href="users.php?delete=<?php echo $user_id ?>">Delete</a></td>
                 <td><a href="add_user.php?edit=<?php echo $user_id ?>">Edit</a></td>
               </tr>
             <?php

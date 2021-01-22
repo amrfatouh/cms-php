@@ -30,8 +30,8 @@
     <input type="file" id="post_image" name='post_image'>
   </div>
   <div class="form-group">
-    <label for="post_content">Post Content</label>
-    <textarea name="post_content" id="post_content" class="form-control"></textarea>
+    <label for="body">Post Content</label>
+    <textarea name="post_content" id="body" class="form-control"></textarea>
   </div>
   <div class="form-group">
     <label for="post_tags">Post Tags</label>

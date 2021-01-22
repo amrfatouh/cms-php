@@ -51,8 +51,8 @@ if (isset($_GET['edit'])) {
     <img width="150" class="thumbnail" src="<?php echo '../images/' . $post_image ?>" alt="<?php echo $post_image ?>">
   </div>
   <div class="form-group">
-    <label for="post_content">Post Content</label>
-    <textarea name="post_content" id="post_content" class="form-control"><?php echo $post_content ?></textarea>
+    <label for="body">Post Content</label>
+    <textarea name="post_content" id="body" class="form-control"><?php echo $post_content ?></textarea>
   </div>
   <div class="form-group">
     <label for="post_tags">Post Tags</label>

@@ -22,6 +22,9 @@ if (isset($_POST['login'])) {
   $user_email = $row['user_email'];
   $user_role = $row['user_role'];
 
+  //preparing password for comparing
+  $password = crypt($password, $user_password);
+
   if ($password === $user_password) {
     $_SESSION['user_name'] = $user_name;
     $_SESSION['user_password'] = $user_password;
