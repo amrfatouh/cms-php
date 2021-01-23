@@ -11,6 +11,13 @@
   </div>
   <!-- Top Menu Items -->
   <ul class="nav navbar-right top-nav">
+    <li><a id="online-users-link" onclick="return false" style="cursor:auto;" href="#">Online Users: <span style="color: #fff;" id="online-users-count"></span></a></li>
+    <style>
+      a#online-users-link:hover {
+        color: #9d9d9d;
+        background-color: #222;
+      }
+    </style>
     <li><a href="../index.php">Home Page</a></li>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>

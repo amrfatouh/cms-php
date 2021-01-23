@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav">
         <li><a href="admin/index.php">Admin Panel</a></li>
         <?php
-        $query = "SELECT * FROM categories";
+        $query = "SELECT * FROM categories LIMIT 4";
         $allCategoriesQuery = mysqli_query($connection, $query);
         while ($row = mysqli_fetch_assoc($allCategoriesQuery)) {
           $cat_id = $row['cat_id'];
@@ -25,6 +25,12 @@
         }
         ?>
         <li><a href="registration.php">Register</a></li>
+        <li><a id="online-users-link" onclick="return false" style="cursor:auto;" href="#">Online Users: <span style="color: #fff;" id="online-users-count"></span></a></li>
+        <style>
+          a#online-users-link:hover {
+            color: #9d9d9d;
+          }
+        </style>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
